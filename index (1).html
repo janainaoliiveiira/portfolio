@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janaina Oliveira — Martech & Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D0D1A;
+    --navy2: #13132B;
+    --navy3: #1C1C3A;
+    --accent: #E8365D;
+    --accent2: #FF6B6B;
+    --gold: #F5A623;
+    --teal: #00D4AA;
+    --text: #F0EEF8;
+    --text2: #A8A4C4;
+    --text3: #6B6890;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,13,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400;
+    color: var(--text2); text-decoration: none;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(232,54,93,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,212,170,0.06) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 1100px; margin: 0 auto; width: 100%; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal);
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.2);
+    padding: 0.4rem 1rem; border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-name .accent { color: var(--accent); }
+  .hero-name .line2 { display: block; color: var(--text2); font-weight: 700; }
+  .hero-sub {
+    font-size: 1.15rem; font-weight: 300; color: var(--text2);
+    max-width: 600px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: white;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem;
+    padding: 0.85rem 1.75rem; border-radius: 6px;
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 0.9rem;
+    padding: 0.85rem 1.75rem; border-radius: 6px;
+    text-decoration: none; letter-spacing: 0.01em;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+    color: var(--text);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* SOBRE */
+  .sobre-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start;
+  }
+  .sobre-text p {
+    color: var(--text2); margin-bottom: 1.25rem; font-size: 1.05rem;
+  }
+  .sobre-text p strong { color: var(--text); font-weight: 500; }
+  .sobre-text blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem; margin: 2rem 0;
+    font-size: 1.1rem; font-style: italic;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-weight: 300;
+  }
+  .traits { display: flex; flex-direction: column; gap: 1rem; }
+  .trait {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .trait:hover { border-color: rgba(232,54,93,0.3); transform: translateX(4px); }
+  .trait-title {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+    color: var(--text); margin-bottom: 0.35rem;
+  }
+  .trait-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+
+  /* STACK */
+  .stack-section { background: var(--navy2); }
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stack-card:hover { border-color: rgba(232,54,93,0.25); }
+  .stack-card-title {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .stack-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .stack-tag {
+    font-size: 0.78rem; padding: 0.3rem 0.7rem;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-radius: 4px; color: var(--text2);
+  }
+
+  /* CASES */
+  .cases-grid { display: grid; gap: 1.5rem; }
+  .case-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem 2.5rem;
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 2rem; align-items: start;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: none; color: inherit;
+  }
+  .case-card:hover { border-color: rgba(232,54,93,0.3); transform: translateY(-2px); }
+  .case-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 3rem; color: rgba(255,255,255,0.06);
+    line-height: 1; min-width: 60px;
+  }
+  .case-content { }
+  .case-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .case-tag {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+  .tag-red { background: rgba(232,54,93,0.12); color: var(--accent); border: 1px solid rgba(232,54,93,0.2); }
+  .tag-teal { background: rgba(0,212,170,0.1); color: var(--teal); border: 1px solid rgba(0,212,170,0.2); }
+  .tag-gold { background: rgba(245,166,35,0.1); color: var(--gold); border: 1px solid rgba(245,166,35,0.2); }
+  .tag-blue { background: rgba(100,149,237,0.1); color: #8FB4FF; border: 1px solid rgba(100,149,237,0.2); }
+  .case-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.3rem; letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .case-desc { font-size: 0.95rem; color: var(--text2); line-height: 1.65; }
+  .case-result {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.8rem; color: var(--accent);
+    white-space: nowrap; text-align: right;
+    min-width: 120px;
+  }
+  .case-result-label { font-size: 0.7rem; color: var(--text3); text-align: right; font-family: 'DM Sans'; font-weight: 400; }
+
+  /* CASES DETAIL */
+  .case-detail {
+    display: none;
+    background: var(--navy2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2.5rem;
+    margin-top: -0.5rem; margin-bottom: 1rem;
+  }
+  .case-detail.open { display: block; animation: fadeDown 0.3s ease; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .case-detail h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin: 1.5rem 0 0.75rem;
+  }
+  .case-detail h4:first-child { margin-top: 0; }
+  .case-detail p { color: var(--text2); font-size: 0.95rem; line-height: 1.75; margin-bottom: 0.75rem; }
+  .case-detail ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+  .case-detail ul li {
+    color: var(--text2); font-size: 0.95rem; padding-left: 1.25rem; position: relative;
+  }
+  .case-detail ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+  .case-detail .highlight-box {
+    background: rgba(232,54,93,0.06); border: 1px solid rgba(232,54,93,0.15);
+    border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+  }
+  .case-detail .highlight-box p { color: var(--text); margin: 0; font-size: 1rem; }
+
+  /* TRAJETÓRIA */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0.4rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; padding-bottom: 2.5rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -2.4rem; top: 0.35rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(232,54,93,0.15);
+  }
+  .timeline-dot.teal { background: var(--teal); box-shadow: 0 0 0 3px rgba(0,212,170,0.15); }
+  .timeline-dot.gold { background: var(--gold); box-shadow: 0 0 0 3px rgba(245,166,35,0.15); }
+  .timeline-period {
+    font-size: 0.75rem; color: var(--text3); letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 0.25rem;
+  }
+  .timeline-role {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    color: var(--text); margin-bottom: 0.15rem;
+  }
+  .timeline-company { font-size: 0.9rem; color: var(--text2); }
+
+  /* FORMAÇÃO */
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem;
+  }
+  .edu-badge {
+    display: inline-block; font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  .badge-current { background: rgba(0,212,170,0.1); color: var(--teal); border: 1px solid rgba(0,212,170,0.2); }
+  .badge-done { background: rgba(255,255,255,0.05); color: var(--text3); border: 1px solid var(--border); }
+  .edu-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.25rem; }
+  .edu-inst { font-size: 0.85rem; color: var(--text2); }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .cert-group-title {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .cert-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .cert-list li {
+    font-size: 0.88rem; color: var(--text2);
+    padding-left: 1rem; position: relative;
+  }
+  .cert-list li::before { content: '·'; position: absolute; left: 0; color: var(--text3); }
+
+  /* CONTATO */
+  .contact-section { background: var(--navy2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .contact-text p { color: var(--text2); font-size: 1.05rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.1rem 1.5rem;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(232,54,93,0.3); transform: translateX(4px); }
+  .contact-link-icon { font-size: 1.1rem; color: var(--accent); min-width: 20px; }
+  .contact-link-label { font-size: 0.75rem; color: var(--text3); margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-link-value { font-size: 0.95rem; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem; text-align: center;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem; color: var(--text3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .sobre-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .edu-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .case-card { grid-template-columns: 1fr; gap: 1rem; }
+    .case-num { font-size: 2rem; }
+    .case-result { text-align: left; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">JO<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#trajetoria">Trajetória</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Disponível para novas oportunidades</div>
+    <h1 class="hero-name">
+      Janaina<br>
+      <span class="accent">Oliveira</span>
+      <span class="line2">Martech & Growth</span>
+    </h1>
+    <p class="hero-sub">
+      Especialista na interseção entre <strong>estratégia, dados e tecnologia</strong>. 
+      Transformo dados em decisões, campanhas em sistemas inteligentes e 
+      problemas complexos em processos que escalam.
+    </p>
+    <div class="hero-ctas">
+      <a href="#cases" class="btn-primary">Ver cases →</a>
+      <a href="mailto:jana05.mkt@gmail.com" class="btn-ghost">Entrar em contato</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8<span>+</span></div>
+        <div class="stat-label">Anos de experiência</div>
+      </div>
+      <div>
+        <div class="stat-num">90<span>+</span></div>
+        <div class="stat-label">Clientes gerenciados</div>
+      </div>
+      <div>
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-label">Segmentos atendidos</div>
+      </div>
+      <div>
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Plataformas de mídia</div>
+      </div>
+      <div>
+        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-label">Ferramentas de analytics</div>
+      </div>
+      <div>
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Certificações</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <p class="section-label">Sobre mim</p>
+        <h2 class="section-title">Inconformismo produtivo como método de trabalho</h2>
+        <p>Sou movida pela pergunta <strong>"o que pode funcionar melhor?"</strong> — e pela incapacidade de deixar a resposta passar sem investigar. Tenho uma facilidade absurda de aprendizado e curiosidade técnica que me levou a dominar ferramentas muito além do escopo direto do meu cargo.</p>
+        <p>Na prática, isso significa que já configurei GA4, Search Console e GTM para equipes de <strong>inbound marketing e SEO</strong> — mesmo sem que fosse minha responsabilidade — porque entendia que dados bem estruturados beneficiam o time inteiro. Essa visão multidisciplinar é o que me permite construir estratégias realmente completas.</p>
+        <p>Decidi entrar para <strong>Análise e Desenvolvimento de Sistemas</strong> porque sempre tive ideias, mas ficava limitada por não saber executar a parte de código. Quero ter autonomia técnica para implementar minhas próprias soluções — fechar o ciclo entre estratégia e execução técnica.</p>
+        <blockquote>"Responsabilidades me energizam. Resolver um problema difícil é o que mais me realiza profissionalmente."</blockquote>
+      </div>
+      <div class="traits reveal">
+        <div class="trait">
+          <div class="trait-title">Inconformismo Produtivo</div>
+          <div class="trait-desc">Não consigo deixar passar o que pode funcionar melhor. Cada conta recebe uma auditoria antes de qualquer otimização.</div>
+        </div>
+        <div class="trait">
+          <div class="trait-title">Curiosidade Técnica</div>
+          <div class="trait-desc">Aprendo rápido e vou fundo. Já contatei suporte do Google para entender mudanças algorítmicas não documentadas.</div>
+        </div>
+        <div class="trait">
+          <div class="trait-title">Paixão por Processos</div>
+          <div class="trait-desc">Implementar um processo bem feito é tão satisfatório quanto bater uma meta. Checklists, documentação e fluidez de time.</div>
+        </div>
+        <div class="trait">
+          <div class="trait-title">Visão de Negócio</div>
+          <div class="trait-desc">Métricas de plataforma só fazem sentido quando conectadas a resultados reais. Dados sem contexto de negócio são ruído.</div>
+        </div>
+        <div class="trait">
+          <div class="trait-title">Visão Multidisciplinar</div>
+          <div class="trait-desc">Sou especialista em mídia paga, já atuei de forma breve com inbound e SEO — e acompanhei de perto para integrar todas as frentes do projeto. CRO e automações. Entendo como cada peça impacta o funil completo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STACK -->
+<section id="stack" class="stack-section">
+  <div class="container">
+    <p class="section-label reveal">Stack & Ferramentas</p>
+    <h2 class="section-title reveal">Tecnologia como vantagem competitiva</h2>
+    <div class="stack-grid" style="margin-top: 3rem; grid-template-columns: repeat(3, 1fr);">
+      <div class="stack-card reveal">
+        <div class="stack-card-title">Mídia Paga</div>
+        <div class="stack-items">
+          <span class="stack-tag">Google Ads</span>
+          <span class="stack-tag">Meta Ads</span>
+          <span class="stack-tag">TikTok Ads</span>
+          <span class="stack-tag">LinkedIn Ads</span>
+          <span class="stack-tag">Pinterest Ads</span>
+          <span class="stack-tag">Bing Ads</span>
+          <span class="stack-tag">Google Grants</span>
+          <span class="stack-tag">Performance Max</span>
+          <span class="stack-tag">Google Merchant Center</span>
+          <span class="stack-tag">Criteo</span>
+          <span class="stack-tag">Blue</span>
+          <span class="stack-tag">Rakuten</span>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-title">Analytics & Dados</div>
+        <div class="stack-items">
+          <span class="stack-tag">GA4</span>
+          <span class="stack-tag">GTM</span>
+          <span class="stack-tag">Firebase</span>
+          <span class="stack-tag">Looker Studio</span>
+          <span class="stack-tag">Google Search Console</span>
+          <span class="stack-tag">BigQuery</span>
+          <span class="stack-tag">Meta CAPI</span>
+          <span class="stack-tag">Conv. Offline</span>
+          <span class="stack-tag">Hotjar</span>
+          <span class="stack-tag">Microsoft Clarity</span>
+          <span class="stack-tag">Semrush</span>
+          <span class="stack-tag">Similarweb</span>
+          <span class="stack-tag">Supermetrics</span>
+          <span class="stack-tag">Excel</span>
+          <span class="stack-tag">Google Planner</span>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-title">Automação & Martech</div>
+        <div class="stack-items">
+          <span class="stack-tag">N8N</span>
+          <span class="stack-tag">Make</span>
+          <span class="stack-tag">HubSpot</span>
+          <span class="stack-tag">RD Station</span>
+          <span class="stack-tag">Claude AI</span>
+          <span class="stack-tag">ChatGPT</span>
+          <span class="stack-tag">Gemini</span>
+          <span class="stack-tag">Perplexity</span>
+          <span class="stack-tag">Apollo</span>
+          <span class="stack-tag">StepIO</span>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-title">Gestão & Estratégia</div>
+        <div class="stack-items">
+          <span class="stack-tag">Scrum</span>
+          <span class="stack-tag">Kanban</span>
+          <span class="stack-tag">OKR</span>
+          <span class="stack-tag">ClickUp</span>
+          <span class="stack-tag">Notion</span>
+          <span class="stack-tag">Monday</span>
+          <span class="stack-tag">Trello</span>
+          <span class="stack-tag">Runrun.it</span>
+          <span class="stack-tag">Slack</span>
+          <span class="stack-tag">Miro</span>
+          <span class="stack-tag">Loom</span>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-title">E-commerce & Plataformas</div>
+        <div class="stack-items">
+          <span class="stack-tag">Shopify</span>
+          <span class="stack-tag">VTEX</span>
+          <span class="stack-tag">Google Merchant Center</span>
+          <span class="stack-tag">Nuvemshop</span>
+        </div>
+      </div>
+      <div class="stack-card reveal">
+        <div class="stack-card-title">Criação & Conteúdo</div>
+        <div class="stack-items">
+          <span class="stack-tag">Canva</span>
+          <span class="stack-tag">Midjourney</span>
+          <span class="stack-tag">Copywriting</span>
+          <span class="stack-tag">Roteiros de Vídeo</span>
+          <span class="stack-tag">Landing Pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <p class="section-label reveal">Cases</p>
+    <h2 class="section-title reveal">Problemas reais.<br>Soluções reais.</h2>
+    <p class="reveal" style="color: var(--text2); margin-bottom: 3rem; max-width: 560px;">Clique em cada case para ver o diagnóstico completo, a solução construída e os resultados.</p>
+
+    <div class="cases-grid">
+
+      <!-- CASE 1 -->
+      <div class="case-card reveal" onclick="toggleCase('case1')">
+        <div class="case-num">01</div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag tag-red">Meta Ads</span>
+            <span class="case-tag tag-teal">CRM</span>
+            <span class="case-tag tag-gold">Growth</span>
+            <span class="case-tag tag-blue">CRO</span>
+          </div>
+          <div class="case-title">Blump — Qualificação de Leads com Dados de Influenciadores</div>
+          <div class="case-desc">Bike shop SaaS com estratégia de influenciadores sem integração com mídia paga. Ativamos as bases dos parceiros como públicos no Meta, implementamos UTMs por influenciador e reestruturamos o funil com análise de CRM.</div>
+        </div>
+        <div>
+          <div class="case-result">+48%</div>
+          <div class="case-result-label">qualificação<br>de leads</div>
+        </div>
+      </div>
+      <div class="case-detail" id="case1">
+        <h4>O problema</h4>
+        <p>O cliente utilizava influenciadores como alcance orgânico, mas não havia nenhuma integração com as campanhas pagas. A taxa de lead para oportunidade estava em 24%. Não havia como identificar qual influenciador gerava qual resultado.</p>
+        <h4>A solução</h4>
+        <ul>
+          <li>Vinculação dos perfis dos influenciadores ao Business Manager — criando públicos baseados em seguidores e engajados</li>
+          <li>Landing pages parametrizadas com UTMs por parceiro — comercial identificava origem de cada lead e venda automaticamente</li>
+          <li>Análise de CRM: mapeei 4 perfis de leads (Não é ICP, EuFicina, Bike Shop, Bike Elétrica) com estratégia específica para cada um</li>
+          <li>Dados de Bike Shop usados como conversão offline para ensinar os algoritmos</li>
+          <li>Análise de mapa de calor na LP: implementei vídeo na primeira dobra e tabela comparativa com concorrentes</li>
+        </ul>
+        <div class="highlight-box">
+          <p>Resultado: taxa de lead → oportunidade de <strong>24% para 48%</strong>. O comercial reportou leads chegando com dúvidas mais pontuais — sinal direto de maior conscientização sobre o produto.</p>
+        </div>
+      </div>
+
+      <!-- CASE 2 -->
+      <div class="case-card reveal" onclick="toggleCase('case2')">
+        <div class="case-num">02</div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag tag-blue">Google Grants</span>
+            <span class="case-tag tag-teal">Analytics</span>
+            <span class="case-tag tag-gold">Terceiro Setor</span>
+          </div>
+          <div class="case-title">Na Prática & Ismart — Recorde de Inscrições com Google Grants</div>
+          <div class="case-desc">Duas ONGs com Google Grants parado, orçamento não consumido e resultados em queda. Diagnóstico de mudança algorítmica não documentada, reestruturação completa de funil e tracking caótico com 40–50 campanhas ativas.</div>
+        </div>
+        <div>
+          <div class="case-result">🏆</div>
+          <div class="case-result-label">Recorde de<br>inscrições 2026</div>
+        </div>
+      </div>
+      <div class="case-detail" id="case2">
+        <h4>O problema</h4>
+        <p>Campanhas que performavam excelente paravam de funcionar mesmo sendo replicadas. Tracking caótico: alterações sem comunicação, conversões parando de disparar, formulários não finalizados em grande quantidade. 40–50 campanhas ativas para monitorar.</p>
+        <h4>O diagnóstico</h4>
+        <p>Entrei em contato direto com o suporte do Google e confirmei: o algoritmo havia mudado fundamentalmente. As palavras-chave — antes fator determinante — passaram a ser apenas sugestão. O que passou a nortear as entregas: as tags e os dados coletados nas páginas.</p>
+        <h4>A solução</h4>
+        <ul>
+          <li>Auditoria completa de funil: mapeei caminhos seguros, caminhos que duplicavam dados e causas de abandono de formulário</li>
+          <li>Estratégia de funil em estágios: topo (visualização de página) → meio (formulário) → fundo (inscrição) → retenção (confirmação)</li>
+          <li>Campanhas de topo gerando volume de dados para viabilizar lances automáticos nas conversões de maior valor</li>
+          <li>Monitoramento diário de 40–50 campanhas com verificação de funil completo</li>
+        </ul>
+        <div class="highlight-box">
+          <p>Todas as metas de inscrições e matrículas batidas. <strong>Recorde histórico de inscrições</strong> na campanha de início de 2026.</p>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div class="case-card reveal" onclick="toggleCase('case3')">
+        <div class="case-num">03</div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag tag-red">N8N</span>
+            <span class="case-tag tag-teal">Automação</span>
+            <span class="case-tag tag-gold">IA</span>
+          </div>
+          <div class="case-title">Automação com IA — Agente de Alertas e Design System</div>
+          <div class="case-desc">Construí um agente de IA com N8N + Claude integrado ao Slack para monitoramento automático de múltiplas contas. Alertas em tempo real para anomalias críticas. Design system por cliente para geração automática de relatórios.</div>
+        </div>
+        <div>
+          <div class="case-result">0</div>
+          <div class="case-result-label">problemas<br>não detectados</div>
+        </div>
+      </div>
+      <div class="case-detail" id="case3">
+        <h4>O problema</h4>
+        <p>Múltiplas contas simultâneas sem monitoramento automático. Verificação manual diária era ineficiente e sujeita a falha humana. Produção de relatórios consumia tempo desproporcional com qualidade inconsistente.</p>
+        <h4>O agente de alertas</h4>
+        <ul>
+          <li>N8N puxa dados das plataformas periodicamente via API</li>
+          <li>Analisa variações e compara com parâmetros definidos por conta</li>
+          <li>Alertas automáticos no Slack: conta sem gasto, queda de conversão +20%, anúncios reprovados, limite de orçamento atingido</li>
+          <li>Painel de controle de orçamento com notificações de % gasto e alerta automático para emissão de boleto</li>
+        </ul>
+        <h4>O design system via IA</h4>
+        <ul>
+          <li>Design system por cliente configurado no Claude: paleta, tipografia, tom de voz, template de relatório</li>
+          <li>Relatórios e apresentações gerados diretamente no Claude com identidade visual correta de cada cliente</li>
+        </ul>
+        <div class="highlight-box">
+          <p>Zero contas com problema crítico não identificado. Redução significativa no tempo de produção de relatórios. Time com mais tempo para estratégia.</p>
+        </div>
+      </div>
+
+      <!-- CASE 4 -->
+      <div class="case-card reveal" onclick="toggleCase('case4')">
+        <div class="case-num">04</div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag tag-red">Diagnóstico</span>
+            <span class="case-tag tag-teal">Tracking</span>
+            <span class="case-tag tag-blue">CRM</span>
+          </div>
+          <div class="case-title">BMR Blindados — Diagnóstico Consultivo e Proposta de Reestruturação</div>
+          <div class="case-desc">Campanhas com métricas excelentes nas plataformas, cliente extremamente insatisfeito. Conversão principal era "visualização de rota" — sem valor real de negócio. Este case demonstra visão consultiva acima de execução técnica.</div>
+        </div>
+        <div>
+          <div class="case-result" style="font-size: 1rem; padding-top: 0.5rem; color: var(--text2);">Diagnóstico<br>estratégico</div>
+          <div class="case-result-label">visão que<br>diferencia</div>
+        </div>
+      </div>
+      <div class="case-detail" id="case4">
+        <h4>O problema real</h4>
+        <p>A plataforma mostrava ótimas métricas. O cliente não via resultado. A conversão principal — visualização de rota no Google Maps — não tinha correlação rastreável com visitas reais ao showroom. O site não capturava UTM, não tinha formulário estratégico, e o WhatsApp era contado como conversão sem rastreio de origem.</p>
+        <h4>A proposta construída</h4>
+        <ul>
+          <li>Formulário estratégico com campos de qualificação: marca/modelo do veículo, momento de compra, orçamento</li>
+          <li>Evento dinâmico no código que captura UTM e altera a mensagem pré-preenchida do WhatsApp por canal de origem</li>
+          <li>Integração de CRM com captura automática de UTM, origem e dados do formulário</li>
+          <li>Substituição de visualização de rota por conversões com valor real de negócio</li>
+        </ul>
+        <div class="highlight-box">
+          <p>O cliente não aceitou as sugestões. Este case está no portfólio porque demonstra algo mais valioso que um resultado: <strong>a capacidade de identificar que métricas de plataforma e resultados reais de negócio são coisas completamente diferentes.</strong></p>
+        </div>
+      </div>
+
+      <!-- CASE 5 -->
+      <div class="case-card reveal" onclick="toggleCase('case5')">
+        <div class="case-num">05</div>
+        <div class="case-content">
+          <div class="case-tags">
+            <span class="case-tag tag-red">E-commerce</span>
+            <span class="case-tag tag-teal">Growth</span>
+            <span class="case-tag tag-gold">Análise de Dados</span>
+          </div>
+          <div class="case-title">Clóvis Calçados — Expansão Regional com ROI como Bússola</div>
+          <div class="case-desc">Campanha de e-commerce com meta de ROI 4 e autonomia para ajustar orçamento. Identificação de padrão de abandono de carrinho por região, redesenho de estratégia de mídia e articulação com logística para viabilizar a conversão.</div>
+        </div>
+        <div>
+          <div class="case-result">ROI 4</div>
+          <div class="case-result-label">meta mantida<br>+ nova região</div>
+        </div>
+      </div>
+      <div class="case-detail" id="case5">
+        <h4>O problema</h4>
+        <p>Durante o monitoramento das campanhas, identifiquei um padrão crítico: uma região específica apresentava alto volume de acessos e cliques, mas taxa de abandono de carrinho significativamente acima da média — consumindo verba sem retorno e puxando as taxas de conversão gerais para baixo quando misturada às demais regiões.</p>
+        <h4>O diagnóstico</h4>
+        <p>O custo do frete para essa região inviabilizava a conversão. Havia demanda real represada — clientes com intenção de compra que desistiam no momento do frete. Em vez de pausar as campanhas, levei o dado para a liderança como uma oportunidade de receita incremental relevante.</p>
+        <h4>A solução</h4>
+        <ul>
+          <li>Articulação com logística e comercial para viabilizar benefícios de frete para a região</li>
+          <li>Separação das campanhas por segmentação regional — eliminando o impacto negativo nas métricas gerais</li>
+          <li>Redução de orçamento na região até estabilizar as taxas de conversão com o novo benefício</li>
+          <li>Comunicação específica destacando o novo benefício de frete para a região</li>
+          <li>Remarketing direcionado para usuários que abandonaram o carrinho — audiência já qualificada com intenção de compra demonstrada</li>
+        </ul>
+        <div class="highlight-box">
+          <p>ROI 4 mantido. <strong>Um gargalo de abandono de carrinho transformado em frente de crescimento de receita regional.</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TRAJETÓRIA -->
+<section id="trajetoria">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;">
+      <div>
+        <p class="section-label reveal">Trajetória</p>
+        <h2 class="section-title reveal">8 anos construindo visão de funil completo</h2>
+        <div class="timeline" style="margin-top: 2.5rem;">
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-period">Out/2025 – Jun/2026</div>
+            <div class="timeline-role">Coordenadora de Operações</div>
+            <div class="timeline-company">Donnu</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot teal"></div>
+            <div class="timeline-period">Mar/2025 – Out/2025</div>
+            <div class="timeline-role">Especialista em Mídia Paga</div>
+            <div class="timeline-company">Donnu</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-period">Jan/2023 – Mar/2025</div>
+            <div class="timeline-role">Analista de Mídia Sênior</div>
+            <div class="timeline-company">IDP — Produto de ticket médio altíssimo</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot gold"></div>
+            <div class="timeline-period">Jan/2022 – Out/2023</div>
+            <div class="timeline-role">Instrutora de Marketing Digital</div>
+            <div class="timeline-company">Alura</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot teal"></div>
+            <div class="timeline-period">Ago/2021 – Fev/2022</div>
+            <div class="timeline-role">Analista de Mídia Pleno</div>
+            <div class="timeline-company">Adtail — E-commerce & B2B</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-period">Set/2021 – Out/2022</div>
+            <div class="timeline-role">Especialista em Mídia Paga</div>
+            <div class="timeline-company">WDC — Lançamentos & Perpétuo (Cátia Damasceno & Leandro Ladeira)</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot gold"></div>
+            <div class="timeline-period">Mar/2020 – Set/2020</div>
+            <div class="timeline-role">Growth Hacking</div>
+            <div class="timeline-company">Vamos Parcelar</div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="timeline-dot teal"></div>
+            <div class="timeline-period">Set/2017 – Jan/2020</div>
+            <div class="timeline-role">Comercial / Gerente de Contas</div>
+            <div class="timeline-company">Win7 Marketing Digital — 90+ clientes ativos em segmentos diversos</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label reveal">Formação</p>
+        <h2 class="section-title reveal">Base técnica em expansão</h2>
+        <div class="edu-grid" style="margin-top: 2.5rem;">
+          <div class="edu-card reveal">
+            <span class="edu-badge badge-current">Em andamento</span>
+            <div class="edu-title">Análise e Desenvolvimento de Sistemas</div>
+            <div class="edu-inst">1º Semestre • 2025 – atual</div>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-badge badge-current">Em andamento</span>
+            <div class="edu-title">Carreira Martech</div>
+            <div class="edu-inst">Alura</div>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-badge badge-done">Concluído</span>
+            <div class="edu-title">Pós-graduação em Big Data</div>
+            <div class="edu-inst">Descomplica • 2021–2022</div>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-badge badge-done">Concluído</span>
+            <div class="edu-title">Gestão em Marketing</div>
+            <div class="edu-inst">UCB Brasília • 2017–2021</div>
+          </div>
+        </div>
+        <p class="section-label reveal" style="margin-top: 3rem;">Certificações</p>
+        <div class="certs-grid" style="margin-top: 1.5rem;">
+          <div class="reveal">
+            <div class="cert-group-title">Métrica Boss</div>
+            <ul class="cert-list">
+              <li>GA4 do Zero</li>
+              <li>GTM na Prática</li>
+              <li>Digital Analytics</li>
+              <li>GA4 para Mídia Paga</li>
+              <li>Auditoria GA4</li>
+              <li>Tags de Marketing</li>
+              <li>Fundamentos CRO</li>
+              <li>Search Console</li>
+              <li>Google BigQuery</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <div class="cert-group-title">Google Oficial</div>
+            <ul class="cert-list">
+              <li>Google Analytics 4</li>
+              <li>Rede de Pesquisa</li>
+              <li>Rede de Display</li>
+              <li>Vídeo</li>
+              <li>Shopping</li>
+              <li>Apps</li>
+              <li>Google Merchant Center</li>
+            </ul>
+            <div class="cert-group-title" style="margin-top: 1rem;">Goobec</div>
+            <ul class="cert-list">
+              <li>Google Ads Performance</li>
+              <li>GTM Goobec</li>
+              <li>Marketing Digital</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <div class="cert-group-title">Especializações</div>
+            <ul class="cert-list">
+              <li>Subido — Pedro Sobral</li>
+              <li>Conversão Extrema</li>
+              <li>Rei do Tráfego</li>
+              <li>RD Summit 2024</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTATO -->
+<section id="contato" class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-text reveal">
+        <p class="section-label">Contato</p>
+        <h2 class="section-title">Vamos conversar?</h2>
+        <p>Estou disponível para oportunidades em <strong style="color: var(--text);">Martech, Marketing Operations, Estratégia Digital e Growth</strong>.</p>
+        <br>
+        <p>Se você está buscando alguém <strong style="color: var(--text);">hands-on</strong>, que entende de dados, constrói automações, resolve problemas com autonomia e nunca se acomoda com o que pode ser melhorado — me manda uma mensagem.</p>
+        <br>
+        <p>Atualmente cursando Análise e Desenvolvimento de Sistemas, com o objetivo de desenvolver sistemas personalizados para uma estratégia 100% alinhada ao negócio — fechando o ciclo entre estratégia, dados e execução técnica.</p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:jana05.mkt@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <div>
+            <div class="contact-link-label">E-mail</div>
+            <div class="contact-link-value">jana05.mkt@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+5561985094356" class="contact-link">
+          <span class="contact-link-icon">📱</span>
+          <div>
+            <div class="contact-link-label">WhatsApp / Telefone</div>
+            <div class="contact-link-value">(61) 98509-4356</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/janaina-oliveira-martech/" target="_blank" class="contact-link">
+          <span class="contact-link-icon">in</span>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/janaina-oliveira-martech</div>
+          </div>
+        </a>
+        <a href="Janaina_Oliveira_Curriculo.pdf" target="_blank" class="contact-link">
+          <span class="contact-link-icon">↓</span>
+          <div>
+            <div class="contact-link-label">Currículo</div>
+            <div class="contact-link-value">Visualizar / Baixar PDF</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Janaina Oliveira · Brasília, DF · <a href="mailto:jana05.mkt@gmail.com" style="color: var(--accent); text-decoration: none;">jana05.mkt@gmail.com</a></p>
+</footer>
+
+<script>
+function toggleCase(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.case-detail').forEach(d => d.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
